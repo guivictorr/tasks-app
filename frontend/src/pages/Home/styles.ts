@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  hasError: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -15,6 +19,7 @@ export const Container = styled.div`
       border-radius: 4px;
       border: 0;
       background-color: #f5f5f5;
+      border: 2px solid ${({hasError}) => hasError ? '#fc4e3f': '#fff'};
 
       &:focus {
         border: 2px solid #56ff8e;
@@ -26,7 +31,7 @@ export const Container = styled.div`
       min-width: 300px;
       padding: 12px;
       border-radius: 4px;
-      border: 0;
+      border: 2px solid ${({hasError}) => hasError ? '#fc4e3f': '#fff'};
       margin: 10px 0;
       background-color: #f5f5f5;
 
@@ -88,3 +93,9 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const Error = styled.span`
+  display: block;
+  color: #fc4e3f;
+  margin-top: 8px;
+`
