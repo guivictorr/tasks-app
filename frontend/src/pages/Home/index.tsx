@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     getTasks()
   }, [])
 
-  function handleDeleteTask(id: number){
+  function handleDeleteTask(id: number) {
     try {
       api.delete(`/tasks/${id}`).then(() => getTasks())
     }
@@ -62,15 +62,18 @@ const Home: React.FC = () => {
   return (
     <Container hasError={Boolean(inputError)}>
       <form onSubmit={handleSubmitPost}>
+        <label htmlFor="title">Título</label>
         <input 
-          placeholder="O que devo fazer ?" 
+          placeholder="O que devo fazer ?"
+          id="title" 
           type="text"
           value={newTaskTitle}
           onChange={event => setNewTaskTitle(event.target.value)}
         />
+        <label htmlFor="description">Descrição</label>
         <textarea 
           placeholder="Descrição" 
-          name="description"
+          id="description"
           value={newTaskDescription}
           onChange={event => setNewTaskDescription(event.target.value)}
         />
@@ -82,7 +85,7 @@ const Home: React.FC = () => {
       <section>
         {tasks.map(task => (
           <div key={task.id}>
-           <button onClick={() => handleDeleteTask(task.id)}>
+           <button aria-label="Deletar tarefa" onClick={() => handleDeleteTask(task.id)}>
              <FiTrash2 color="#fff" size={20}/>
            </button>
            <Link to={`task/${task.id}`}>
