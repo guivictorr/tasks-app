@@ -5,6 +5,14 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
+Frontend
+- [ReactJS](https://pt-br.reactjs.org)
+- [Styled Components](styled-components.com/)
+- [Axios](https://github.com/axios/axios)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Typescript](typescriptlang.org/)
+- [React Router](https://reactrouter.com/)
+
 Backend
 - [NodeJS](https://nodejs.org/)
 - [Typescript](https://typescriptlang.org/)
@@ -22,12 +30,14 @@ git clone link
 cd tasks-app
 
 ## 3. Instalar as dependências
-cd backend && npm install
+cd backend && yarn install || npm install
+cd frontend && yarn install || npm install
 
 ## 4. Colocar suas config de banco de dados no ormconfig.json
 
 ## 5. Rodar o backend e frontend
-cd backend && yarn dev (localhost:5555)
+cd backend && yarn dev || npm run dev (localhost:5555)
+cd frontend && yarn start || npm run start (localhost:3000)
 ```
 
 ## 🤔 Como contribuir
