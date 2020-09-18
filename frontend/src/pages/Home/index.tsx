@@ -28,6 +28,15 @@ const Home: React.FC = () => {
     getTasks()
   }, [])
 
+  function handleDeleteTask(id: number){
+    try {
+      api.delete(`/tasks/${id}`).then(() => getTasks())
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
   function handleSubmitPost(event: FormEvent) {
     event.preventDefault()
 
@@ -72,13 +81,13 @@ const Home: React.FC = () => {
 
       <section>
         {tasks.map(task => (
-          <div>
-           <button>
-             <FiTrash2 color="#fff" size={25}/>
+          <div key={task.id}>
+           <button onClick={() => handleDeleteTask(task.id)}>
+             <FiTrash2 color="#fff" size={20}/>
            </button>
            <Link to={`task/${task.id}`}>
             <p>{task.title}</p>
-             <FiChevronRight color="#000" size={25}/>
+             <FiChevronRight color="#000" size={20}/>
            </Link>
          </div>
         ))}

@@ -59,7 +59,7 @@ export const Container = styled.div<ContainerProps>`
       width: 500px;
       background-color: #f5f5f5;
       display:flex;
-      border-radius: 4px;
+      border-radius: 5px;
       margin-top: 80px;
 
       & + div {
@@ -81,6 +81,7 @@ export const Container = styled.div<ContainerProps>`
         flex: 1;
         text-decoration: none;
         color: #000;
+        padding: 0 12px;
 
         p {
           margin-left: 10px;
