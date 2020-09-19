@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io'
 import { Link, useParams, useHistory } from 'react-router-dom';
 
+import formatDate from '../../services/formatDate';
 import api from '../../services/api';
 
 import { Container } from './styles';
@@ -51,7 +52,7 @@ const Task: React.FC = () => {
           <p>{item.description}</p>
 
           <footer>
-            <p><strong>Criada em:</strong>{item.created_at}</p>
+            <p><strong>Criada em:</strong>{formatDate(item.created_at)}</p>
             <Link to={`/task/edit/${id}`}>
               Editar
             </Link>
