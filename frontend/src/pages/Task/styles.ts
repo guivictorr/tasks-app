@@ -61,12 +61,12 @@ export const Container = styled.div`
       align-self: flex-end;
     }
 
-    button {
+    a {
       background-color: orange;
       color: white;
-      border:none;
       padding: 12px;
       border-radius: 4px;
+      text-decoration:none;
       transition: opacity 0.2s ease;
 
       &:hover{

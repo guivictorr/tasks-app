@@ -20,7 +20,7 @@ const Home: React.FC = () => {
   async function getTasks() {
     const response = await api.get('/tasks')
     const data = response.data
-    console.log(data)
+    
     setTasks([...data])
   }
 
