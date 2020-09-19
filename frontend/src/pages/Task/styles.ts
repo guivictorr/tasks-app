@@ -39,11 +39,11 @@ export const Container = styled.div`
     flex: 1;
     border-radius: 4px;
     padding: 12px;
+    word-wrap: break-word;
 
     p {
       font-size: 16px;
       color: gray;
-
       strong {
         color: black;
         margin-right: 5px;
