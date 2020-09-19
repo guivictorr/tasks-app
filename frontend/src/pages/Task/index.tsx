@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiArrowLeft } from 'react-icons/fi'
+import { IoIosArrowRoundBack } from 'react-icons/io'
 import { useParams } from 'react-router-dom';
 
 import { Container } from './styles';
@@ -15,7 +15,7 @@ const Task: React.FC = () => {
     <Container>
       <header>
         <button>
-          <FiArrowLeft color="#fff" size={40}/>
+          <IoIosArrowRoundBack color="#fff" size={50}/>
           <p>Voltar</p>
         </button>
       </header>
