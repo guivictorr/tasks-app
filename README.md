@@ -1,5 +1,5 @@
 <h1 align='center'>Tasks App</h1>
-<p align='center'>Aplicação de CRUD feita para praticar backend e frontend usando as tecnologias que estou estudando no momento.</p>
+<p align='center'>Aplicação de CRUD feita para praticar backend usando as tecnologias que estou estudando no momento.</p>
 
 ## 🛠 Tecnologias
 
@@ -13,6 +13,13 @@ Frontend
 - [Typescript](typescriptlang.org/)
 - [React Router](https://reactrouter.com/)
 
+Backend
+- [NodeJS](https://nodejs.org/)
+- [Typescript](https://typescriptlang.org/)
+- [TypeORM](https://typeorm.io#/)
+- [Postgres](https://www.postgresql.org)
+- [Docker](https://www.docker.com)
+
 ## 📱💻 Instruções
 
 ```
@@ -23,9 +30,13 @@ git clone link
 cd tasks-app
 
 ## 3. Instalar as dependências
+cd backend && yarn install || npm install
 cd frontend && yarn install || npm install
 
-## 5. Rodar o frontend
+## 4. Colocar suas config de banco de dados no ormconfig.json
+
+## 5. Rodar o backend e frontend
+cd backend && yarn dev || npm run dev (localhost:5555)
 cd frontend && yarn start || npm run start (localhost:3000)
 ```
 
