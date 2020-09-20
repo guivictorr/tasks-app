@@ -1,7 +1,9 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import api from '../../services/api';
+
+import BackButton from '../../components/BackButton';
 
 import { Container, Error } from './styles';
 
@@ -9,10 +11,16 @@ interface RouteParamsProps {
   id: string;
 }
 
+interface TaskProps {
+  title: string;
+  description: string;
+}
+
 const Edit: React.FC = () => {
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [newTaskDescription, setNewTaskDescription] = useState('')
   const [inputError, setInputError] = useState('')
+  const [task, setTask] = useState<TaskProps>()
   const { id } = useParams<RouteParamsProps>()
   const { goBack } = useHistory()
 
@@ -40,12 +48,22 @@ const Edit: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    api.get(`/tasks/${id}`).then(response => {
+      const data = response.data
+      setTask(data)
+    })  
+  }, [])
+  
   return (
     <Container hasError={Boolean(inputError)}>
+      <header>
+        <BackButton/>
+      </header>
       <form onSubmit={handleEditTask}>
         <label htmlFor="title">Título</label>
         <input 
-          placeholder="O que devo fazer ?"
+          placeholder={task?.title}
           id="title" 
           type="text"
           value={newTaskTitle}
@@ -53,7 +71,7 @@ const Edit: React.FC = () => {
         />
         <label htmlFor="description">Descrição</label>
         <textarea 
-          placeholder="Descrição" 
+          placeholder={task?.description}
           id="description"
           value={newTaskDescription}
           onChange={event => setNewTaskDescription(event.target.value)}

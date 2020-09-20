@@ -9,6 +9,10 @@ export const Container = styled.div<ContainerProps>`
   flex-direction:column;
   align-items:center;
 
+  header {
+    width: 100%;
+  }
+
   form {
     display:flex;
     flex-direction: column;
