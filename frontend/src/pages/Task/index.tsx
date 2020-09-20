@@ -15,6 +15,7 @@ interface TaskProps {
   title: string;
   description: string;
   created_at: string;
+  id: number;
 }
 
 const Task: React.FC = () => {
@@ -53,7 +54,7 @@ const Task: React.FC = () => {
 
           <footer>
             <p><strong>Criada em:</strong>{formatDate(item.created_at)}</p>
-            <Link to={`/task/edit/${id}`}>
+            <Link to={`/edit/${item.id}`}>
               Editar
             </Link>
           </footer>

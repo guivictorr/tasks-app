@@ -1,43 +1,22 @@
-import React, {useState, useEffect, FormEvent} from 'react';
-import { Link } from 'react-router-dom';
-import { FiTrash2, FiChevronRight } from 'react-icons/fi'
+import React, { FormEvent, useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 
-import api from '../../services/api'
+import api from '../../services/api';
 
 import { Container, Error } from './styles';
 
-interface TasksProps {
-  id: number;
-  title: string;
+interface RouteParamsProps {
+  id: string;
 }
 
-const Home: React.FC = () => {
-  const [tasks, setTasks] = useState<TasksProps[]>([])
+const Edit: React.FC = () => {
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [newTaskDescription, setNewTaskDescription] = useState('')
   const [inputError, setInputError] = useState('')
+  const { id } = useParams<RouteParamsProps>()
+  const { goBack } = useHistory()
 
-  async function getTasks() {
-    const response = await api.get('/tasks')
-    const data = response.data
-    
-    setTasks([...data])
-  }
-
-  useEffect(() => {
-    getTasks()
-  }, [])
-
-  function handleDeleteTask(id: number) {
-    try {
-      api.delete(`/tasks/${id}`).then(() => getTasks())
-    }
-    catch(error){
-      console.log(error)
-    }
-  }
-
-  function handleSubmitPost(event: FormEvent) {
+  function handleEditTask(event: FormEvent) {
     event.preventDefault()
 
     if(!newTaskTitle || !newTaskDescription){
@@ -46,23 +25,24 @@ const Home: React.FC = () => {
     }
 
     try {
-      api.post('/tasks', {
+      api.put(`/tasks/${id}`, {
         title: newTaskTitle,
         description: newTaskDescription
-      }).then(() => getTasks())
+      })
 
       setNewTaskTitle('')
       setNewTaskDescription('')
       setInputError('')
+      goBack()
     }
     catch(error) {
       console.log(error)
     }
   }
-  
+
   return (
     <Container hasError={Boolean(inputError)}>
-      <form onSubmit={handleSubmitPost}>
+      <form onSubmit={handleEditTask}>
         <label htmlFor="title">Título</label>
         <input 
           placeholder="O que devo fazer ?"
@@ -82,22 +62,8 @@ const Home: React.FC = () => {
       </form>
 
       {inputError && <Error>{inputError}</Error>}
-
-      <section>
-        {tasks.map(task => (
-          <div key={task.id}>
-           <button aria-label="Deletar tarefa" onClick={() => handleDeleteTask(task.id)}>
-             <FiTrash2 color="#fff" size={20}/>
-           </button>
-           <Link to={`task/${task.id}`}>
-            <p>{task.title}</p>
-             <FiChevronRight color="#000" size={20}/>
-           </Link>
-         </div>
-        ))}
-      </section>
     </Container>
   );
-}
+};
 
-export default Home;
+export default Edit;
