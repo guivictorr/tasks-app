@@ -5,7 +5,11 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-    form {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  form {
     display:flex;
     flex-direction: column;
     width: 300px;
@@ -25,7 +29,7 @@ export const Container = styled.div<ContainerProps>`
       border: 2px solid ${({hasError}) => hasError ? '#fc4e3f': '#fff'};
 
       &:focus {
-        border: 2px solid #56ff8e;
+        border: 2px solid #ffaa56;
       }
     }
 
@@ -39,7 +43,7 @@ export const Container = styled.div<ContainerProps>`
       background-color: #f5f5f5;
 
       &:focus {
-        border: 2px solid #56ff8e;
+        border: 2px solid #ffaa56;
       }
     }
 
@@ -47,7 +51,7 @@ export const Container = styled.div<ContainerProps>`
       padding: 12px;
       border: 0;
       border-radius: 4px;
-      background-color: #56ff8e;
+      background-color: #ffaa56;
       font-weight: bold;
       transition: opacity 0.2s ease;
 

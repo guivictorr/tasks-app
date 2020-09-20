@@ -58,7 +58,7 @@ const Edit: React.FC = () => {
           value={newTaskDescription}
           onChange={event => setNewTaskDescription(event.target.value)}
         />
-        <button type="submit">Criar</button>
+        <button type="submit">Editar</button>
       </form>
 
       {inputError && <Error>{inputError}</Error>}
