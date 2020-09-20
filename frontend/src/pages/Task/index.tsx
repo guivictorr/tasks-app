@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { IoIosArrowRoundBack } from 'react-icons/io'
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import formatDate from '../../services/formatDate';
 import api from '../../services/api';
+
+import BackButton from '../../components/BackButton';
 
 import { Container } from './styles';
 
@@ -21,17 +22,12 @@ interface TaskProps {
 const Task: React.FC = () => {
   const [task, setTask] = useState<TaskProps[]>([])
   const { id } = useParams<RouteParamsProps>()
-  const { goBack } = useHistory()
 
   async function handleGetTask() {
     const response = await api.get(`/tasks/${id}`)
     const data = response.data
 
     setTask([data])
-  }
-
-  function handleGoBack(){
-    goBack()
   }
 
   useEffect(() => {
@@ -41,10 +37,7 @@ const Task: React.FC = () => {
   return (
     <Container>
       <header>
-        <button onClick={handleGoBack}>
-          <IoIosArrowRoundBack color="#fff" size={50}/>
-          <p>Voltar</p>
-        </button>
+        <BackButton/>
       </header>
 
       {task.map(item => (
