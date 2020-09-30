@@ -24,7 +24,7 @@ Backend
 
 ```
 ## 1. Clonar repositório
-git clone link
+git clone https://github.com/guivictorr/tasks-app.git
 
 ## 2. Entrar na pasta
 cd tasks-app
@@ -33,7 +33,7 @@ cd tasks-app
 cd backend && yarn install || npm install
 cd frontend && yarn install || npm install
 
-## 4. Colocar suas config de banco de dados no ormconfig.json
+## 4. Colocar suas config de banco de dados no .env
 
 ## 5. Rodar o backend e frontend
 cd backend && yarn dev || npm run dev (localhost:5555)
