@@ -11,5 +11,5 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(routes)
 
-app.listen(5555)
+app.listen(process.env.PORT || 5555)
 
