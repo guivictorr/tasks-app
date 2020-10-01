@@ -1,9 +1,6 @@
 <h1 align='center'>Tasks App</h1>
 <p align='center'>Aplicação de CRUD feita para praticar backend usando as tecnologias que estou estudando no momento.</p>
 
-## 🔎 Veja como ficou
-[Deploy da aplicação](https://tasks-app-psi.vercel.app)
-
 ## 🛠 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
