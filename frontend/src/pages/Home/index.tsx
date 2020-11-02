@@ -1,16 +1,17 @@
 import React, {useState, useEffect, FormEvent} from 'react';
 import { Link } from 'react-router-dom';
-import { FiTrash2, FiChevronRight } from 'react-icons/fi'
+import { FiTrash2, FiChevronRight, FiCheck } from 'react-icons/fi'
 
 import api from '../../services/api'
 
-import { Container, Error } from './styles';
+import { Container, Error, TaskContainer } from './styles';
 
 import Loading from '../../components/Loading';
 
 interface TasksProps {
   id: number;
   title: string;
+  finished: boolean;
 }
 
 const Home: React.FC = () => {
@@ -27,6 +28,16 @@ const Home: React.FC = () => {
   async function handleDeleteTask(id: number) {
     try {
       await api.delete(`/tasks/${id}`)
+      getTasks()
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+  async function handleUpdateTask(id: number) {
+    try {
+      await api.patch(`/tasks/${id}`)
       getTasks()
     }
     catch(error){
@@ -91,15 +102,20 @@ const Home: React.FC = () => {
 
       <section>
         {tasks.map(task => (
-          <div key={task.id}>
+          <TaskContainer key={task.id} finished={task.finished}>
            <button aria-label="Deletar tarefa" onClick={() => handleDeleteTask(task.id)}>
              <FiTrash2 color="#fff" size={20}/>
            </button>
+           {task.finished || (
+            <button aria-label="Finalizar Tarefa" onClick={() => handleUpdateTask(task.id)}>
+             <FiCheck color="#fff" size={20}/>
+            </button>
+           )}
            <Link to={`task/${task.id}`}>
             <p>{task.title}</p>
              <FiChevronRight color="#000" size={20}/>
            </Link>
-         </div>
+         </TaskContainer>
         ))}
       </section>
     </Container>
