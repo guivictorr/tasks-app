@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import api from '../../services/api';
 
 import BackButton from '../../components/BackButton';
+import Loading from '../../components/Loading';
 
 import { Container, Error } from './styles';
 
@@ -17,14 +18,14 @@ interface TaskProps {
 }
 
 const Edit: React.FC = () => {
+  const [task, setTask] = useState<TaskProps>()
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [newTaskDescription, setNewTaskDescription] = useState('')
   const [inputError, setInputError] = useState('')
-  const [task, setTask] = useState<TaskProps>()
   const { id } = useParams<RouteParamsProps>()
   const { goBack } = useHistory()
 
-  function handleEditTask(event: FormEvent) {
+  async function handleEditTask(event: FormEvent) {
     event.preventDefault()
 
     if(!newTaskTitle || !newTaskDescription){
@@ -33,7 +34,7 @@ const Edit: React.FC = () => {
     }
 
     try {
-      api.put(`/tasks/${id}`, {
+      await api.put(`/tasks/${id}`, {
         title: newTaskTitle,
         description: newTaskDescription
       })
@@ -48,12 +49,20 @@ const Edit: React.FC = () => {
     }
   }
 
+  async function handleGetData() {
+    const { data } = await api.get(`/tasks/${id}`)
+    setTask(data)
+    setNewTaskTitle(data.title)
+    setNewTaskDescription(data.description)
+  }
+
   useEffect(() => {
-    api.get(`/tasks/${id}`).then(response => {
-      const data = response.data
-      setTask(data)
-    })  
+    handleGetData()
   }, [])
+
+  if (!task) {
+    return <Loading />
+  }
   
   return (
     <Container hasError={Boolean(inputError)}>
