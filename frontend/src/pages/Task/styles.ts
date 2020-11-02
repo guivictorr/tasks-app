@@ -8,7 +8,6 @@ export const Container = styled.div`
 
   main {
     background-color: #f5f5f5;
-    flex: 1;
     border-radius: 4px;
     padding: 12px;
     word-wrap: break-word;
