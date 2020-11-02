@@ -33,11 +33,11 @@ export class TasksController {
 
   async finishedTask(request: Request, response: Response){
     const { id } = request.params
-    const task = await getRepository(Tasks).update(id, {
+    await getRepository(Tasks).update(id, {
       finished: true
     })
 
-
+    return response.status(200).json({message: 'Task finished'})
   }
 
   async deleteTask(request: Request, response: Response){
