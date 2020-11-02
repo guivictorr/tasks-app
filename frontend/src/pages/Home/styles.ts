@@ -4,6 +4,10 @@ interface ContainerProps {
   hasError: boolean;
 }
 
+interface TaskProps {
+  finished: boolean;
+}
+
 export const Container = styled.div<ContainerProps>`
   display:flex;
   flex-direction:column;
@@ -41,8 +45,7 @@ export const Container = styled.div<ContainerProps>`
       border-radius: 4px;
       border: 2px solid ${({hasError}) => hasError ? '#fc4e3f': '#fff'};
       background-color: #f5f5f5;
-      font: 16px Roboto, sans-serif;
-
+      
       &:focus {
         border: 2px solid #56ff8e;
       }
@@ -64,65 +67,6 @@ export const Container = styled.div<ContainerProps>`
 
   section {
     width: 80%;
-
-    div {
-      background-color: #f5f5f5;
-      display:flex;
-      border-radius: 5px;
-      margin-top: 80px;
-
-      & + div {
-        margin-top: 20px;
-      }
-
-      button {
-        background-color: #fc4e3f;
-        border: 0;
-        padding: 12px;
-        display:flex;
-        align-items:center;
-        border-radius: 4px 0 0 4px;
-        transition: opacity 0.2s ease;
-
-        svg{
-          transition: transform 0.2s ease;
-        }
-
-        &:hover{  
-          opacity: 0.8;
-
-          svg{
-            transform: scale(0.8)
-          }
-        }
-
-        & + button {
-          border-radius: 0;
-          background: #5aef8e;
-        }
-      }
-
-      a {
-        display:flex;
-        align-items:center;
-        flex: 1;
-        text-decoration: none;
-        color: #000;
-        transition: transform 0.2s ease;
-        &:hover{
-          transform: translateX(10px)
-        }
-
-        p {
-          margin-left: 10px;
-        }
-
-        svg {
-          margin-left: auto;
-          margin-right: 20px;
-        }
-      }
-    }
   }
 `;
 
@@ -130,4 +74,63 @@ export const Error = styled.span`
   display: block;
   color: #fc4e3f;
   margin-top: 8px;
+`
+
+export const TaskContainer = styled.div<TaskProps>`
+  background-color: #f5f5f5;
+  display:flex;
+  border-radius: 5px;
+  margin-top: 80px;
+
+  & + div {
+    margin-top: 20px;
+  }
+
+  button {
+    background-color: #fc4e3f;
+    border: 0;
+    padding: 12px;
+    display:flex;
+    align-items:center;
+    border-radius: 4px 0 0 4px;
+    transition: opacity 0.2s ease;
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {  
+      opacity: 0.8;
+
+      svg{
+        transform: scale(0.8)
+      }
+    }
+
+      & + button {
+        border-radius: 0;
+        background: #5aef8e;
+      }
+    }
+
+    a {
+      display:flex;
+      align-items:center;
+      flex: 1;
+      text-decoration: ${({finished}) => finished ? 'line-through' : 'none'};
+      color: #000;
+      transition: transform 0.2s ease;
+      &:hover{
+        transform: translateX(10px)
+      }
+
+      p {
+        margin-left: 10px;
+      }
+
+      svg {
+        margin-left: auto;
+        margin-right: 20px;
+      }
+    }
 `
