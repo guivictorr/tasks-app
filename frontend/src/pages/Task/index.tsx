@@ -5,6 +5,7 @@ import formatDate from '../../services/formatDate';
 import api from '../../services/api';
 
 import BackButton from '../../components/BackButton';
+import Loading from '../../components/Loading';
 
 import { Container } from './styles';
 
@@ -20,39 +21,38 @@ interface TaskProps {
 }
 
 const Task: React.FC = () => {
-  const [task, setTask] = useState<TaskProps[]>([])
+  const [task, setTask] = useState<TaskProps>()
   const { id } = useParams<RouteParamsProps>()
 
   async function handleGetTask() {
-    const response = await api.get(`/tasks/${id}`)
-    const data = response.data
-
-    setTask([data])
+    const { data } = await api.get(`/tasks/${id}`)
+    data.created_at = formatDate(data.created_at)
+    setTask(data)
   }
 
   useEffect(() => {
     handleGetTask()
   }, [])
 
+  if(!task) {
+    return <Loading />
+  }
+
   return (
     <Container>
       <header>
         <BackButton/>
       </header>
-
-      {task.map(item => (
-        <main key={id}>
-          <h1>{item.title}</h1>
-          <p>{item.description}</p>
-
-          <footer>
-            <p><strong>Criada em:</strong>{formatDate(item.created_at)}</p>
-            <Link to={`/edit/${item.id}`}>
-              Editar
-            </Link>
-          </footer>
-        </main>
-      ))}
+      <main key={id}>
+        <h1>{task.title}</h1>
+        <p>{task.description}</p>
+        <footer>
+          <p><strong>Criada em:</strong>{task.created_at}</p>
+          <Link to={`/edit/${task.id}`}>
+            Editar
+          </Link>
+        </footer>
+      </main>
     </Container>
   );
 }
