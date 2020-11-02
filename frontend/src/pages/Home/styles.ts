@@ -41,6 +41,7 @@ export const Container = styled.div<ContainerProps>`
       border-radius: 4px;
       border: 2px solid ${({hasError}) => hasError ? '#fc4e3f': '#fff'};
       background-color: #f5f5f5;
+      font: 16px Roboto, sans-serif;
 
       &:focus {
         border: 2px solid #56ff8e;
@@ -62,8 +63,9 @@ export const Container = styled.div<ContainerProps>`
   }
 
   section {
+    width: 80%;
+
     div {
-      width: 500px;
       background-color: #f5f5f5;
       display:flex;
       border-radius: 5px;
