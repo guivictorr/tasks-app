@@ -6,38 +6,35 @@ import api from '../../services/api'
 
 import { Container, Error } from './styles';
 
+import Loading from '../../components/Loading';
+
 interface TasksProps {
   id: number;
   title: string;
 }
 
 const Home: React.FC = () => {
-  const [tasks, setTasks] = useState<TasksProps[]>([])
+  const [tasks, setTasks] = useState<TasksProps[]>()
   const [newTaskTitle, setNewTaskTitle] = useState('')
   const [newTaskDescription, setNewTaskDescription] = useState('')
   const [inputError, setInputError] = useState('')
 
   async function getTasks() {
-    const response = await api.get('/tasks')
-    const data = response.data
-    
+    const { data } = await api.get('/tasks')
     setTasks([...data])
   }
 
-  useEffect(() => {
-    getTasks()
-  }, [])
-
-  function handleDeleteTask(id: number) {
+  async function handleDeleteTask(id: number) {
     try {
-      api.delete(`/tasks/${id}`).then(() => getTasks())
+      await api.delete(`/tasks/${id}`)
+      getTasks()
     }
     catch(error){
       console.log(error)
     }
   }
 
-  function handleSubmitPost(event: FormEvent) {
+  async function handleSubmitPost(event: FormEvent) {
     event.preventDefault()
 
     if(!newTaskTitle || !newTaskDescription){
@@ -46,11 +43,12 @@ const Home: React.FC = () => {
     }
 
     try {
-      api.post('/tasks', {
+      await api.post('/tasks', {
         title: newTaskTitle,
         description: newTaskDescription
-      }).then(() => getTasks())
+      })
 
+      getTasks()
       setNewTaskTitle('')
       setNewTaskDescription('')
       setInputError('')
@@ -59,7 +57,15 @@ const Home: React.FC = () => {
       console.log(error)
     }
   }
-  
+
+  useEffect(() => {
+    getTasks()
+  }, [])
+
+  if (!tasks) {
+    return <Loading />
+  }
+
   return (
     <Container hasError={Boolean(inputError)}>
       <form onSubmit={handleSubmitPost}>
