@@ -2,21 +2,19 @@
    "name": "tasks_api",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
-   "devDependencies": {
-      "@types/cors": "^2.8.7",
-      "@types/express": "^4.17.8",
-      "@types/node": "^8.0.29",
-      "ts-node": "3.3.0",
-      "ts-node-dev": "^1.0.0-pre.63",
-      "typescript": "3.3.3333"
-   },
    "dependencies": {
       "body-parser": "^1.18.1",
       "cors": "^2.8.5",
       "express": "^4.15.4",
       "pg": "^7.3.0",
       "reflect-metadata": "^0.1.10",
-      "typeorm": "0.2.26"
+      "typeorm": "0.2.26",
+      "@types/cors": "^2.8.7",
+      "@types/express": "^4.17.8",
+      "@types/node": "^8.0.29",
+      "ts-node": "3.3.0",
+      "ts-node-dev": "^1.0.0-pre.63",
+      "typescript": "3.3.3333"
    },
    "scripts": {
       "dev": "ts-node-dev --inspect --transpile-only src/index.ts -ignore-watch node_modules",
