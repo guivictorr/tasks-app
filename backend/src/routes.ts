@@ -1,14 +1,12 @@
-import { Router } from 'express'
-import { TasksController } from './controller/TasksController'
+import { Router } from 'express';
+import TasksController from './controllers/TasksControllers';
 
-const routes = Router()
-const tasksController = new TasksController
+const routes = Router();
+const taskController = new TasksController();
 
-routes.get('/tasks', tasksController.getTasks)
-routes.post('/tasks', tasksController.saveTask)
-routes.get('/tasks/:id', tasksController.getTask)
-routes.put('/tasks/:id', tasksController.updateTask)
-routes.patch('/tasks/:id', tasksController.finishedTask)
-routes.delete('/tasks/:id', tasksController.deleteTask)
+routes.post('/tasks', taskController.create);
+routes.get('/tasks', taskController.index);
+routes.put('/tasks/:id', taskController.update);
+routes.patch('/tasks/:id', taskController.finish);
 
-export default routes
+export default routes;
