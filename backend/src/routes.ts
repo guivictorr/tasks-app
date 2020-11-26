@@ -4,6 +4,8 @@ import TasksController from './controllers/TasksControllers';
 const routes = Router();
 const taskController = new TasksController();
 
-routes.post('tasks', taskController.create);
+routes.post('/tasks', taskController.create);
+routes.get('/tasks', taskController.index);
+routes.put('/tasks/:id', taskController.update);
 
 export default routes;

@@ -9,6 +9,18 @@ class TaskRepository implements ITaskRepository {
     this.ormRepository = getRepository(Task);
   }
 
+  public async findById(id: string): Promise<Task> {
+    const task = await this.ormRepository.findOne({
+      where: { id },
+    });
+
+    if (!task) {
+      throw new Error('Task not found');
+    }
+
+    return task;
+  }
+
   public async create(title: string, description: string): Promise<Task> {
     const task = this.ormRepository.create({
       title,
