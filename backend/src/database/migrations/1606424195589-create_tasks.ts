@@ -22,6 +22,11 @@ export default class createTasks1606424195589 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'finished',
+            type: 'boolean',
+            default: false,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
