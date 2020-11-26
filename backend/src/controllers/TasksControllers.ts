@@ -3,6 +3,7 @@ import TaskRepository from '../repositories/TaskRepository';
 import CreateTaskService from '../services/CreateTaskService';
 import UpdateTaskService from '../services/UpdateTaskService';
 import FinishTaskService from '../services/FinishTaskService';
+import DeleteTaskService from '../services/DeleteTaskService';
 
 class TasksControllers {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -42,6 +43,19 @@ class TasksControllers {
     const task = await patchTask.execute(id);
 
     return response.status(200).json(task);
+  }
+
+  public async destroy(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { id } = request.params;
+
+    const taskRepository = new TaskRepository();
+    const deleteTask = new DeleteTaskService(taskRepository);
+    await deleteTask.execute(id);
+
+    return response.status(204).send();
   }
 }
 

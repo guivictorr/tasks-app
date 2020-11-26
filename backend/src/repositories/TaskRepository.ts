@@ -9,6 +9,10 @@ class TaskRepository implements ITaskRepository {
     this.ormRepository = getRepository(Task);
   }
 
+  public async delete(id: string): Promise<void> {
+    this.ormRepository.delete(id);
+  }
+
   public async findById(id: string): Promise<Task> {
     const task = await this.ormRepository.findOne({
       where: { id },

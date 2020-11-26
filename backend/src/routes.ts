@@ -8,5 +8,6 @@ routes.post('/tasks', taskController.create);
 routes.get('/tasks', taskController.index);
 routes.put('/tasks/:id', taskController.update);
 routes.patch('/tasks/:id', taskController.finish);
+routes.delete('/tasks/:id', taskController.destroy);
 
 export default routes;
