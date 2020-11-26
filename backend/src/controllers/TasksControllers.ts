@@ -57,6 +57,15 @@ class TasksControllers {
 
     return response.status(204).send();
   }
+
+  public async search(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const taskRepository = new TaskRepository();
+    const task = await taskRepository.findById(id);
+
+    return response.status(200).json(task);
+  }
 }
 
 export default TasksControllers;
