@@ -1,17 +1,17 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
-import { FiTrash2, FiChevronRight, FiCheck } from 'react-icons/fi';
 
 import api from '../../services/api';
 
-import { Container, Error, TaskContainer } from './styles';
+import { Container, Error } from './styles';
 
 import Loading from '../../components/Loading';
+import TaskItem from '../../components/TaskItem';
 
 interface TasksProps {
-  id: number;
+  id: string;
   title: string;
   finished: boolean;
+  description: string;
 }
 
 const Home: React.FC = () => {
@@ -23,24 +23,6 @@ const Home: React.FC = () => {
   async function getTasks() {
     const { data } = await api.get('/tasks');
     setTasks([...data]);
-  }
-
-  async function handleDeleteTask(id: number) {
-    try {
-      await api.delete(`/tasks/${id}`);
-      getTasks();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function handleUpdateTask(id: number) {
-    try {
-      await api.patch(`/tasks/${id}`);
-      getTasks();
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   async function handleSubmitPost(event: FormEvent) {
@@ -68,7 +50,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     getTasks();
-  }, []);
+  }, [tasks]);
 
   if (!tasks) {
     return <Loading />;
@@ -104,28 +86,12 @@ const Home: React.FC = () => {
 
       <section>
         {tasks.map(task => (
-          <TaskContainer key={task.id} finished={task.finished}>
-            <button
-              aria-label="Deletar tarefa"
-              onClick={() => handleDeleteTask(task.id)}
-              type="button"
-            >
-              <FiTrash2 color="#fff" size={20} />
-            </button>
-            {task.finished || (
-              <button
-                aria-label="Finalizar Tarefa"
-                onClick={() => handleUpdateTask(task.id)}
-                type="button"
-              >
-                <FiCheck color="#fff" size={20} />
-              </button>
-            )}
-            <Link to={`task/${task.id}`}>
-              <p>{task.title}</p>
-              <FiChevronRight color="#000" size={20} />
-            </Link>
-          </TaskContainer>
+          <TaskItem
+            id={task.id}
+            finished={task.finished}
+            title={task.title}
+            description={task.description}
+          />
         ))}
       </section>
     </Container>

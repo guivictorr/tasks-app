@@ -8,11 +8,11 @@ import Edit from '../pages/Edit';
 const Routes: React.FC = () => {
   return (
     <Switch>
-      <Route path="/" exact component={Home}/>
-      <Route path="/task/:id" component={Task}/>
-      <Route path="/edit/:id" component={Edit}/>
+      <Route path="/" exact component={Home} />
+      <Route path="/task/:id" component={Task} />
+      <Route path="/edit/:id" component={Edit} />
     </Switch>
   );
-}
+};
 
 export default Routes;

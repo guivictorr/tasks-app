@@ -4,10 +4,6 @@ interface ContainerProps {
   hasError: boolean;
 }
 
-interface TaskProps {
-  finished: boolean;
-}
-
 export const Container = styled.div<ContainerProps>`
   header {
     height: 350px;
@@ -23,7 +19,7 @@ export const Container = styled.div<ContainerProps>`
       justify-content: center;
       flex-direction: column;
       height: 100%;
-      width: 200px;
+      width: 250px;
 
       label {
         width: 100%;
@@ -105,9 +101,16 @@ export const Container = styled.div<ContainerProps>`
       }
     }
   }
-`;
 
-export const TaskContainer = styled.div<TaskProps>``;
+  section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+  }
+`;
 
 export const Error = styled.span`
   display: block;
