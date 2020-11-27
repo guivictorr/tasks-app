@@ -7,23 +7,18 @@ export default createGlobalStyle`
     box-sizing: border-box;
     outline:0;
   }
-  
-  body{
-    background: #0a0a0a;
-    --webkit-font-smoothing: antialiased;
+
+  #root {
+    width: 100%;
+    height: 100%;
   }
 
-  body, input, button,textarea {
-    font: 16px Roboto, sans-serif;
-  }
-  
-  #root{
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 40px 20px;
+  input,button,textarea {
+    font-family: Roboto, sans-serif;
   }
 
-  button {
-    cursor:pointer;
+  body {
+    font-family: Roboto, sans-serif;
+    background-color: #111;
   }
-`
+`;
