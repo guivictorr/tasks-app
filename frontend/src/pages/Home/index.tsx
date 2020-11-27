@@ -98,10 +98,9 @@ const Home: React.FC = () => {
             />
           </label>
           <button type="submit">Criar</button>
+          {inputError && <Error>{inputError}</Error>}
         </form>
       </header>
-
-      {inputError && <Error>{inputError}</Error>}
 
       <section>
         {tasks.map(task => (

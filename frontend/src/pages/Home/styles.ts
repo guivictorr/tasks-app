@@ -43,7 +43,7 @@ export const Container = styled.div<ContainerProps>`
           width: 100%;
           padding: 10px 15px;
           background-color: transparent;
-          border: 1px solid #333;
+          border: 1px solid ${({ hasError }) => (hasError ? '#fc4e3f' : '#333')};
           border-radius: 8px;
           color: #fff;
           transition: all 0.4s ease;
@@ -68,7 +68,7 @@ export const Container = styled.div<ContainerProps>`
           min-height: 100px;
           padding: 10px 15px;
           background-color: transparent;
-          border: 1px solid #333;
+          border: 1px solid ${({ hasError }) => (hasError ? '#fc4e3f' : '#333')};
           border-radius: 8px;
           color: #fff;
           transition: border 0.4s ease;
@@ -113,4 +113,5 @@ export const Error = styled.span`
   display: block;
   color: #fc4e3f;
   margin-top: 8px;
+  font-size: 13px;
 `;
