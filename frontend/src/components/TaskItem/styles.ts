@@ -12,6 +12,11 @@ export const TaskItemContainer = styled.div<TaskItemProps>`
   background-color: #000;
   border: 1px solid #333;
   border-radius: 12px;
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+  }
 
   div {
     width: 100%;

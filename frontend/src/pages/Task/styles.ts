@@ -1,47 +1,50 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  
-  header{
-    margin-bottom: 20px;
-  }
-
   main {
-    background-color: #f5f5f5;
-    border-radius: 4px;
-    padding: 12px;
-    word-wrap: break-word;
+    background-color: #000;
+    border-bottom: 1px solid #333;
+    color: #fff;
+    padding: 25px;
 
-    p {
-      font-size: 16px;
-      color: gray;
-      strong {
-        color: black;
-        margin-right: 5px;
+    h1 {
+      font-size: 46px;
+      word-wrap: break-word;
+    }
+
+    .description {
+      word-wrap: break-word;
+      margin-top: 30px;
+    }
+
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 40px;
+
+      p {
+        strong {
+          margin-right: 10px;
+        }
       }
-    }
-  }
 
-  footer {
-    display:flex;
-    margin-top: 10px;
-    justify-content:space-between;
-    align-items:center;
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 6px 12px;
+        color: #888;
+        font-size: 15px;
+        transition: all 0.4s ease;
 
-    p {
-      align-self: flex-end;
-    }
-
-    a {
-      background-color: orange;
-      color: white;
-      padding: 12px;
-      border-radius: 4px;
-      text-decoration:none;
-      transition: opacity 0.2s ease;
-
-      &:hover{
-        opacity: 0.8;
+        &:hover {
+          border-color: #fff;
+          color: #fff;
+        }
       }
     }
   }
