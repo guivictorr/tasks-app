@@ -6,12 +6,19 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
   header {
-    height: 350px;
+    height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #000;
     border-bottom: 1px solid #333;
+    flex-direction: column;
+
+    div {
+      width: 100%;
+      margin-top: 20px;
+      margin-left: 50px;
+    }
 
     form {
       display: flex;

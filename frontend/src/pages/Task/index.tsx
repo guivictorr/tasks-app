@@ -7,6 +7,7 @@ import api from '../../services/api';
 import Loading from '../../components/Loading';
 
 import { Container } from './styles';
+import BackButton from '../../components/BackButton';
 
 interface RouteParamsProps {
   id: string;
@@ -40,6 +41,7 @@ const Task: React.FC = () => {
   return (
     <Container>
       <main key={id}>
+        <BackButton />
         <h1>{task.title}</h1>
         <p className="description">{task.description}</p>
         <footer>

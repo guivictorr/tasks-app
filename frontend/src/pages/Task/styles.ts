@@ -7,6 +7,10 @@ export const Container = styled.div`
     color: #fff;
     padding: 25px;
 
+    div {
+      margin-bottom: 30px;
+    }
+
     h1 {
       font-size: 46px;
       word-wrap: break-word;

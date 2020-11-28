@@ -6,6 +6,7 @@ import api from '../../services/api';
 import Loading from '../../components/Loading';
 
 import { Container, Error } from './styles';
+import BackButton from '../../components/BackButton';
 
 interface RouteParamsProps {
   id: string;
@@ -65,6 +66,7 @@ const Edit: React.FC = () => {
   return (
     <Container hasError={Boolean(inputError)}>
       <header>
+        <BackButton />
         <form onSubmit={handleEditTask}>
           <label htmlFor="title">
             <p>Título</p>

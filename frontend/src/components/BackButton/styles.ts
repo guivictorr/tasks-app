@@ -2,16 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   button {
-    display:flex;
-    align-items:center;
-    background:transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: transparent;
     color: #fff;
     border: none;
-    &:hover{
-      svg{
+
+    &:hover {
+      svg {
         transform: translateX(-5px);
       }
-      p{
+      p {
         transform: translateX(5px);
         opacity: 1;
       }
@@ -21,7 +23,7 @@ export const Container = styled.div`
       opacity: 0;
       transition: all 0.2s ease;
     }
-    svg{
+    svg {
       transition: all 0.2s ease;
     }
   }
