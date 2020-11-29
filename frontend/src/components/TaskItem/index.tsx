@@ -43,22 +43,24 @@ const TaskItem: React.FC<TaskItemProps> = ({
       </div>
       <p>{description}</p>
       <footer>
-        {finished || (
+        <main className="buttons">
+          {finished || (
+            <button
+              className="finish-button"
+              type="button"
+              onClick={handleFinishTask}
+            >
+              <FiCheck color="#fff" size={20} />
+            </button>
+          )}
           <button
-            className="finish-button"
+            className="delete-button"
             type="button"
-            onClick={handleFinishTask}
+            onClick={handleDeleteTask}
           >
-            <FiCheck color="#fff" size={20} />
+            <FiTrash2 color="#fff" size={20} />
           </button>
-        )}
-        <button
-          className="delete-button"
-          type="button"
-          onClick={handleDeleteTask}
-        >
-          <FiTrash2 color="#fff" size={20} />
-        </button>
+        </main>
       </footer>
     </TaskItemContainer>
   );

@@ -65,40 +65,53 @@ export const TaskItemContainer = styled.div<TaskItemProps>`
     border-top: 1px solid #333;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
     padding: 10px 20px;
 
-    button {
-      width: 60px;
-      height: 40px;
+    &:before {
+      content: ' ';
+      width: 30px;
+      height: 8px;
+      background-color: ${({ finished }) => (finished ? '#4d3f' : '#fc4e3f')};
+      border-radius: 12px;
+    }
+
+    .buttons {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 3px 6px;
-      border-radius: 6px;
-      cursor: pointer;
-      border: none;
-      transition: all 0.4s ease;
 
-      & + button {
-        margin-left: 10px;
+      button {
+        width: 60px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px 6px;
+        border-radius: 6px;
+        cursor: pointer;
+        border: none;
+        transition: all 0.4s ease;
+
+        & + button {
+          margin-left: 10px;
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
       }
 
-      &:hover {
-        background-color: transparent;
+      .delete-button {
+        background-color: #fc4e3f;
+        border: 1px solid #fc4e3f;
       }
-    }
 
-    .delete-button {
-      background-color: #fc4e3f;
-      border: 1px solid #fc4e3f;
-    }
-
-    .finish-button {
-      background-color: #4d3f;
-      border: 1px solid #4d3f;
+      .finish-button {
+        background-color: #4d3f;
+        border: 1px solid #4d3f;
+      }
     }
   }
 `;
